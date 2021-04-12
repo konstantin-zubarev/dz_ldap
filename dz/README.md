@@ -24,7 +24,7 @@
 Установите FreeIPA Server.
 --------------------------
 
-Настроим файл hosts, указав имя FQDN хоста этого стенда. Без этого конфигурация сервера FreeIPA работать не будет.
+Необходимо произвести первоначальные настройки, указав имя FQDN хоста этого стенда. Без этого конфигурация сервера FreeIPA работать не будет.
 
 ```
 [root@srv ~]# vi /etc/hosts
@@ -32,7 +32,7 @@
 192.168.11.10    srv.local.lab    srv
 ```
 
-Для настройки сервера FreeIPA, уснановим `ipa-server` и `ipa-server-dns`
+Установим пакеты `ipa-server` и `ipa-server-dns` для настройки сервера FreeIPA. 
 ```
 [root@srv ~]# yum install -y ipa-server ipa-server-dns
 ```
@@ -46,6 +46,25 @@
 [root@srv ~]# ipa-server-install
 ```
 
+Настроим Firewalld.
+-------------------
+
+```
+[root@srv ~]# systemctl start firewalld
+[root@srv ~]# systemctl enable firewalld
+```
+Настроим сервис firewalld
+
+```
+[root@srv ~]# firewall-cmd --permanent --zone=public --add-service={ldap,ldaps,dns}
+```
+```
+[root@srv ~]# firewall-cmd --reload
+```
+```
+[root@srv ~]# firewall-cmd --list-all --zone=public
+```
+
 Итак, настройка нашего центрального сервера идентификации FreeIPA успешно завершена.
 
 Создать билет Kerberos.
@@ -54,8 +73,14 @@
 Получим билет Kerberos с помощью команды `kinit admin`. Этот билет позволит нам использовать инструменты IPA.
 
 ```
-
+[root@srv ~]# kinit admin
 ```
+
+Панель управления FreeIPA.
+--------------------------
+
+
+
 
 
 
