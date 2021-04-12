@@ -1,0 +1,26 @@
+---
+# tasks file for roles/server
+
+- name: Install FreeIPA
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ipa-server
+    - ipa-server-dns
+
+- name: Install ipa server
+  command: |
+    ipa-server-install --unattended \
+    --hostname={{ ansible_hostname }}.{{ domain }} \
+    --domain={{ domain }} \
+    --realm={{ realm }} \
+    --ds-password={{ admin_pass }} \
+    --master-password={{ admin_pass }} \
+    --admin-password={{ admin_pass }}  \
+    --setup-dns \
+    --forwarder=8.8.8.8 \
+    --auto-reverse \
+    --mkhomedir
+  notify:
+    - restart ipa

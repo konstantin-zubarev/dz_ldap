@@ -1,0 +1,24 @@
+---
+# tasks file for roles/client
+
+- name: Set timezone to Europe/Moscow
+  timezone:
+    name: Europe/Moscow
+
+- name: Network eth1
+  include_tasks: eth1.yml
+
+- name: SSH & Hostname
+  include_tasks: ssh_hostname.yml
+  
+- name: Firewalld
+  include_tasks: firewalld.yml
+
+- name: Resolv.conf
+  include_tasks: resolv.yml
+
+- name: IPA client install
+  include_tasks: ipa_client_install.yml
+
+- name: SSH key
+  include_tasks: ssh_key.yml

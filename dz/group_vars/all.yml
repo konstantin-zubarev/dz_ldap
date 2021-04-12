@@ -1,0 +1,16 @@
+---
+
+server: 'srv'
+domain: 'lab.local'
+realm: 'LAB.LOCAL'
+gateway: '192.168.11.10'
+dns: '192.168.11.10'
+
+admin_user: 'admin'
+admin_pass: 'password'
+
+user: 'kostya'
+name: 'Konstantin'
+sn: 'Zubarev'
+pass: 'qwe$$123'
+ssh: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCl30kaxf5sQYdV9JoQbYniAKgfk4YnpUwjqs8cncfVGUqIDLGtyYwxUFtMQDdLxQBW/iQ7K1fn9Ks4WYDmPH0yFy/GV2I+Jh4TUTvlGVKbiGiKoeEbrL7gqArET8fJ7s+Gut6TKWQok4YDols8r0MuKdxCrUeQH4jV8IpPV8RBbrPkiHkQ9B0UhEBWAkmm4sgZL+tZVddfhjKRV5gIiHxkObZQF7g5UxFTT808igZdYfRsutErPu7Eor4jwGi6Gd1E2FKirfJoqyJWDKJdbsqsYjQjxtmaVk0xVXAH6V+3U4wfkbjmRGAQqDUUWbJcSLSYHow4iUMCq+b60rdpx2tV kostya@pc1.lab.local'

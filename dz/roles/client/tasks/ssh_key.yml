@@ -1,0 +1,22 @@
+---
+# tasks file for roles/client
+
+- name: user
+  user:
+    name: '{{ user }}'
+
+- name: сreate directory
+  file:
+    path: /home/{{ user }}/.ssh
+    owner: '{{ user }}'
+    group: '{{ user }}'
+    mode: '0700'
+    state: directory
+
+- name: Copy ssh key
+  copy:
+    src: 'id_rsa'
+    dest: /home/{{ user }}/.ssh/id_rsa
+    owner: '{{ user }}'
+    group: '{{ user }}'
+    mode: '0600'

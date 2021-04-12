@@ -1,0 +1,7 @@
+DEVICE={{ ansible_eth1.device }}
+TYPE=Ethernet
+ONBOOT=yes
+NM_CONTROLLED=no
+BOOTPROTO=static
+IPADDR={{ ansible_eth1.ipv4.address }}
+NETMASK={{ ansible_eth1.ipv4.netmask }}

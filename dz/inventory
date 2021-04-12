@@ -1,0 +1,7 @@
+[server]
+srv ansible_host=127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/srv/virtualbox/private_key
+
+[client]
+pc1 ansible_host=127.0.0.1 ansible_port=2200 ansible_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/pc1/virtualbox/private_key
+
+pc2 ansible_host=127.0.0.1 ansible_port=2201 ansible_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/pc2/virtualbox/private_key

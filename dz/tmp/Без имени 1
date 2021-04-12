@@ -1,0 +1,31 @@
+- name: Install ipa server
+  command: |
+    ipa-server-install --unattended \
+    --realm={{ ipaserver_realm }} \
+    --domain={{ ipaserver_domain }} \
+    --ds-password={{ ipaserver_managerpassword }} \
+    --master-password={{ ipaserver_kerberospassword }} \
+    --admin-password={{ ipaserver_adminspassword }} \
+    --hostname={{ ipaserver_hostname }} \
+    --ip-address={{ ipaserver_ipaddress }} \
+    --setup-dns \
+    --forwarder={{ ipaserver_forwarder }} \
+    --auto-reverse \
+    --mkhomedir
+  args:
+    creates: /etc/ipa/default.conf
+
+- name: Create ipa user
+  ipa_user:
+    name: "{{ user_login_name }}"
+    givenname: "{{ user_first_name }}"
+    sn: "{{ user_surname }}"
+    displayname: "{{ user_displayname }}"
+    password: "{{ user_password }}"
+    krbpasswordexpiration: '20201231235959'
+    sshpubkey: "{{ user_sshpubkey }}"
+    loginshell: "{{ user_shell }}"
+    ipa_user: "{{ ipaserver_admin }}"
+    ipa_pass: "{{ ipaserver_adminspassword }}"
+    ipa_host: "{{ ipaserver_hostname }}"
+    state: present

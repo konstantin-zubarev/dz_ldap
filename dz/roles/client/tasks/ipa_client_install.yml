@@ -1,0 +1,19 @@
+---
+# tasks file for roles/client
+
+- name: Install FreeIPA
+  package:
+    name: ipa-client
+    state: present
+
+- name: Install ipa client
+  command: |
+    ipa-client-install --unattended \
+    --server={{ server }}.{{ domain }} \
+    --domain={{ domain }} \
+    --realm={{ realm }} \
+    --principal {{ admin_user }} \
+    --password={{ admin_pass }} \
+    --mkhomedir
+  args:
+    creates: /etc/ipa/default.conf

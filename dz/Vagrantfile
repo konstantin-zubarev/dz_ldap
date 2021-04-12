@@ -1,0 +1,39 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "centos/7"
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 512
+  end
+
+  config.vm.define "srv" do |srv|
+    srv.vm.network "private_network", ip: "192.168.11.10"
+    srv.vm.hostname = "srv"
+    srv.vm.provider "virtualbox" do |v|
+      v.memory = 4096
+    end
+  end
+
+  config.vm.define "pc1" do |pc1|
+    pc1.vm.network "private_network", ip: "192.168.11.20"
+    pc1.vm.hostname = "pc1"
+  end
+
+  config.vm.define "pc2" do |pc2|
+    pc2.vm.network "private_network", ip: "192.168.11.21"
+    pc2.vm.hostname = "pc2"
+  end
+
+#  config.vm.provision "server", type:'ansible' do |server|
+#    server.inventory_path = 'inventory'
+#    server.playbook = 'server.yml'
+#  end
+  
+#  config.vm.provision "client", type:'ansible' do |client|
+#    client.inventory_path = 'inventory'
+#    client.playbook = 'client.yml'
+#  end
+
+end

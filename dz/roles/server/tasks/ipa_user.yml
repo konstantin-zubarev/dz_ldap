@@ -1,0 +1,20 @@
+---
+# tasks file for roles/server
+
+- name: Create ipa user
+  ignore_errors: true
+  ipa_user:
+    name: '{{ user }}'
+    givenname: '{{ name }}'
+    sn: '{{ sn }}'
+    displayname: '{{ name }} {{ sn }}'
+    password: '{{ pass }}'
+    krbpasswordexpiration: '20221231235959'
+    sshpubkey: "{{ ssh }}"
+    loginshell: '/bin/bash'
+    mail:
+      - '{{ user }}@{{ domain }}'
+    ipa_user: '{{ admin_user }}'
+    ipa_pass: '{{ admin_pass }}'
+    ipa_host: '{{ ansible_hostname }}.{{ domain }}'
+    state: present

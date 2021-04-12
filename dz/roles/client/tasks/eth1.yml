@@ -1,0 +1,11 @@
+---
+# tasks file for roles/client
+
+- name: Device ifcfg {{ ansible_eth1.device }}
+  template:
+    backup: true
+    owner: root
+    group: root
+    src: ifcfg-eth1.j2
+    dest: /etc/sysconfig/network-scripts/ifcfg-{{ ansible_eth1.device }}
+  notify: restart network
