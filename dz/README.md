@@ -19,7 +19,6 @@
 
 Реализация.
 -----------
-![](topology.jpeg)
 
 Установите FreeIPA Server.
 --------------------------
@@ -69,25 +68,22 @@
 
 ```
 [root@srv ~]# kinit admin
+Password for admin@LAB.LOCAL:
 ```
 
 Панель управления FreeIPA.
 --------------------------
 
-В браузере перейдем по адресу https://rv.lab.local (user=admin; passwd=password). Необходимо прописать на хост машине в hosts адрес нашего сервера FreeIPA. 
+В браузере перейдем по адресу https://srv.lab.local/ipa/ui (user=admin; passwd=password).
+> Необходимо прописать на хост машине в hosts адрес нашего сервера FreeIPA. 
 
 ```
 192.168.11.10	srv.lab.local	srv
 ```
-
-
-
-
-
-VLAN
-----
-
-
-
 ![](1.jpg)
+
+
+
+
+
 
