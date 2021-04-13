@@ -50,18 +50,13 @@
 -------------------
 
 ```
-[root@srv ~]# systemctl start firewalld
-[root@srv ~]# systemctl enable firewalld
+[root@srv ~]# systemctl enable --now firewalld
 ```
 Настроим сервис firewalld
 
 ```
 [root@srv ~]# firewall-cmd --permanent --zone=public --add-service={ldap,ldaps,dns}
-```
-```
 [root@srv ~]# firewall-cmd --reload
-```
-```
 [root@srv ~]# firewall-cmd --list-all --zone=public
 ```
 
@@ -79,8 +74,11 @@
 Панель управления FreeIPA.
 --------------------------
 
+В браузере перейдем по адресу https://rv.lab.local (user=admin; passwd=password). Необходимо прописать на хост машине в hosts адрес нашего сервера FreeIPA. 
 
-
+```
+192.168.11.10	srv.lab.local	srv
+```
 
 
 
@@ -89,91 +87,7 @@
 VLAN
 ----
 
-Настроим vlan интерфейсы testClient1 <-> testServer1 testClient2 <-> testServer2.
 
-<details>
-  <summary>testClient1</summary>
-
-```
-[root@testClient1 ~]# cat /etc/sysconfig/network-scripts/ifcfg-vlan10
-
-ONBOOT=yes
-TYPE=Vlan
-VLAN=yes
-VLAN_NAME_TYPE=VLAN_PLUS_VID_NO_PAD
-DEVICE=vlan10
-PHYSDEV=eth1
-VLAN_ID=10
-BOOTPROTO=static
-IPADDR=10.10.10.254
-NETMASK=255.255.255.0
-```
-</details>
-
-<details>
-  <summary>testServer1</summary>
-
-```
-[root@testServer1 ~]# cat /etc/sysconfig/network-scripts/ifcfg-vlan10
-
-ONBOOT=yes
-TYPE=Vlan
-VLAN=yes
-VLAN_NAME_TYPE=VLAN_PLUS_VID_NO_PAD
-DEVICE=vlan10
-PHYSDEV=eth1
-VLAN_ID=10
-BOOTPROTO=static
-IPADDR=10.10.10.1
-NETMASK=255.255.255.0
-
-```
-</details>
-
-<details>
-  <summary>testClient2</summary>
-
-```
-[root@testClient2 ~]# cat /etc/sysconfig/network-scripts/ifcfg-vlan20 
-
-ONBOOT=yes
-TYPE=Vlan
-VLAN=yes
-VLAN_NAME_TYPE=VLAN_PLUS_VID_NO_PAD
-DEVICE=vlan20
-PHYSDEV=eth1
-VLAN_ID=20
-BOOTPROTO=static
-IPADDR=10.10.10.254
-NETMASK=255.255.255.0
-```
-</details>
-
-<details>
-  <summary>testServer2</summary>
-
-```
-[root@testServer2 ~]# cat /etc/sysconfig/network-scripts/ifcfg-vlan20
-
-ONBOOT=yes
-TYPE=Vlan
-VLAN=yes
-VLAN_NAME_TYPE=VLAN_PLUS_VID_NO_PAD
-DEVICE=vlan20
-PHYSDEV=eth1
-VLAN_ID=20
-BOOTPROTO=static
-IPADDR=10.10.10.1
-NETMASK=255.255.255.0
-```
-</details>
-
-Разделенная локальная сеть, не конфлектует между собой.
-
-LACP
-----
-
-Для проверки отключим один из интерфейсов и убедимся, что доступ к хосту не изменилась.
 
 ![](1.jpg)
 
