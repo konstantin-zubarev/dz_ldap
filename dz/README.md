@@ -82,8 +82,48 @@ Password for admin@LAB.LOCAL:
 ```
 ![](1.jpg)
 
+Установите FreeIPA Client.
+--------------------------
+
+Необходимо произвести первоначальные настройки, указав имя FQDN хоста и сервер имен.
+
+```
+[root@pc1 ~]# vi /etc/hosts
+
+192.168.11.20    pc1.local.lab    pc1
+```
+```
+[root@pc1 ~]# vi /etc/resolv.conf
+
+search local.lab
+nameserver 192.168.11.10
+```
+Установим пакет `ipa-client`. 
+```
+[root@pc1 ~]# yum install -y ipa-client
+```
+Конфигурирование клиента:
+
+```
+[root@pc1 ~]# ipa-client-install --mkhomedir
+```
+
+Настроим авторизацию по SSH ключам. Для этого на клиенской машине сгенирируем SSH-ключ.
+
+```
+[root@pc1 ~]# ssh-keygen
+```
+
+Далее выполним команду.
+
+```
+[root@pc1 ~]# cat ~/.ssh/id_rsa.pub
+```
+Выведенный ключ скопируем его и вставим в соответствующее поле у пользователя, в панели управления FreeIPA.
+
+Проверим соединение c хостами `pc2`, `srv` через ключ ssh. 
+
+![](2.png)
 
 
-
-
-
+- [Установка и использование FreeIPA на CentOS](https://www.dmosk.ru/miniinstruktions.php?mini=freeipa-centos)
