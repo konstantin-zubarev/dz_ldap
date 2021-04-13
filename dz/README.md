@@ -128,7 +128,7 @@ nameserver 192.168.11.10
 Проверка задания
 ----------------
 
-1. Выполнить `vagrant up`, и тестовый стент развернеться поносью.
+1. Выполнить `vagrant up`, и тестовый стент развернеться полностью.
 > есть два playbook: `server.yum` и `client.yum`.
 
 - [Установка и использование FreeIPA на CentOS](https://www.dmosk.ru/miniinstruktions.php?mini=freeipa-centos)
