@@ -1,1 +1,0 @@
-ipa-server-install --unattended --hostname=srv.lab.local --domain=lab.local --realm=LAB.LOCAL --ds-password=aou7loon --master-password=aou7loon --admin-password=aou7loon  --setup-dns --forwarder=8.8.8.8 --auto-reverse --mkhomedir
